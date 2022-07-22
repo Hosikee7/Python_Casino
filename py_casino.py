@@ -1,5 +1,8 @@
 from audioop import add
+from os import times_result
 import random
+import time
+from timeit import repeat
 
 money = 1000
 
@@ -15,9 +18,16 @@ print("AI : " + ai_answer + ", You : " + a)
 
 if a == ai_answer:
     a = random.choice(lst2)
-    print(a)
-    print("Your Pocket :", money + 10)
+    money+=10
+    print(a, "\nYour Pocket :", money)
 else:
     b = random.choice(lst3)
-    print(b)
-    print("Your Pocket :", money - 30)
+    money-=30
+    print(b, "\nYour Pocket :", money)
+
+if money == 0:
+    print("You can't play casino! You must wait 1 hour!")
+    if times_result == 1:
+        add(money + 100)
+
+repeat = bool(input('Go on? [Close : Q]'))
